@@ -44,6 +44,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    diffy (3.2.0)
     erubi (1.7.1)
     ffi (1.9.23)
     globalid (0.4.1)
@@ -106,6 +107,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    ridgepole (0.7.1)
+      activerecord (>= 5.0.1, < 6)
+      diffy
     ruby_dep (1.5.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -132,6 +136,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 5.1.5)
+  ridgepole
 
 BUNDLED WITH
    1.16.1
