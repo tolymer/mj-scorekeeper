@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, only: %i(show create)
   resources :groups, only: %i(show create) do
     resources :members, only: %i(index create), controller: 'group_members'
-    resources :events, only: %i(index show create), shallow: true
+    resources :events, only: %i(index show create), shallow: true do
+      resources :members, only: %i(index create), controller: 'event_members'
+    end
   end
 end
