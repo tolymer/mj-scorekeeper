@@ -11,4 +11,8 @@ class User < ApplicationRecord
     name = request.params.dig('auth', 'name')
     find_by(name: name)
   end
+
+  def as_json(options)
+    super({ only: [:id, :name] })
+  end
 end
