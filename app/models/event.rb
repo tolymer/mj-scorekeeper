@@ -4,4 +4,8 @@ class Event < ApplicationRecord
   has_many :games
 
   belongs_to :group
+
+  def as_json(options)
+    super(only: [:id, :title, :date, :group_id, :created_at])
+  end
 end
