@@ -1,6 +1,6 @@
 # Docs
 
-https://mj-scorekeeper.herokuapp.com/
+https://tolymer-api.herokuapp.com/
 
 ## Development
 
