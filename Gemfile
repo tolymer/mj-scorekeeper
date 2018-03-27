@@ -4,6 +4,7 @@ gem 'rails', '5.1.5'
 gem 'pg'
 gem 'puma'
 gem 'knock'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'pry-byebug'
