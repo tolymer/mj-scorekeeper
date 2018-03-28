@@ -1,0 +1,42 @@
+'/users/{user_id}':
+  get:
+    tags:
+      - users
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: user_id
+        description: user id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Returns a single user
+        schema:
+          $ref: '#definitions/User'
+
+'/users':
+  post:
+    tags:
+      - users
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: hokaccha
+            password:
+              type: string
+              format: password
+              example: xxx
+    responses:
+      '201':
+        description: Create user
+        schema:
+          $ref: '#definitions/User'

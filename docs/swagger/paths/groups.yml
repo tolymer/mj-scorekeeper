@@ -1,0 +1,40 @@
+'/groups/{group_id}':
+  get:
+    tags:
+      - groups
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: group_id
+        description: group id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Return a single group
+        schema:
+          $ref: '#definitions/Group'
+
+'/groups':
+  post:
+    tags:
+      - groups
+    security:
+      - Bearer: []
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: tolymer
+    responses:
+      '201':
+        description: Create group
+        schema:
+          $ref: '#definitions/Group'
