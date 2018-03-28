@@ -219,7 +219,7 @@ paths:
           schema:
             $ref: '#definitions/Event'
 
-  /events/{id}:
+  /events/{event_id}:
     get:
       tags:
         - events
