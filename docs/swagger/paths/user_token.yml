@@ -1,0 +1,30 @@
+'/user_token':
+  post:
+    tags:
+      - user_token
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            auth:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: hokaccha
+                password:
+                  type: string
+                  format: password
+                  example: foo
+    responses:
+      '201':
+        description: Returns JWT token
+        schema:
+          type: object
+          properties:
+            jwt:
+              type: string
+              example: xxxxxxxxxxxxxxxxxxxxxxxxxxxx.yyyyyyyyyyyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzzzzzzzzzzzz

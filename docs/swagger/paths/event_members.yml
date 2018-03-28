@@ -1,0 +1,47 @@
+'/events/{event_id}/members':
+  get:
+    tags:
+      - event_members
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: event_id
+        description: event id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Return event members
+        schema:
+          type: array
+          items:
+            $ref: '#definitions/User'
+  post:
+    tags:
+      - event_members
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: event_id
+        description: event id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              format: int64
+              example: 1
+    responses:
+      '201':
+        description: Create event member
+        schema:
+          $ref: '#definitions/User'
