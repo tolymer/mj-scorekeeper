@@ -1,0 +1,420 @@
+swagger: "2.0"
+info:
+  title: Tolymer API
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /user_token:
+    post:
+      tags:
+        - user_token
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              auth:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  password:
+                    type: string
+                    format: password
+      responses:
+        201:
+          description: Returns JWT token
+          schema:
+            type: object
+            properties:
+              jwt:
+                type: string
+                example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjIzMjgwOTEsInN1YiI6M30.IdqaEplqcjXOFXkS9FIZeKsAYh3c-c_SYxtF8EJl6tg
+
+  /users/{user_id}:
+    get:
+      tags:
+        - users
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: user_id
+          description: user id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Returns a single user
+          schema:
+            $ref: '#definitions/User'
+
+  /users:
+    post:
+      tags:
+        - users
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: hokaccha
+              password:
+                type: string
+                format: password
+                example: xxx
+      responses:
+        201:
+          description: Create user
+          schema:
+            $ref: '#definitions/User'
+
+  /groups/{group_id}:
+    get:
+      tags:
+        - groups
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: group_id
+          description: group id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Return a single group
+          schema:
+            $ref: '#definitions/Group'
+
+  /groups:
+    post:
+      tags:
+        - groups
+      security:
+        - Bearer: []
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: tolymer
+      responses:
+        201:
+          description: Create group
+          schema:
+            $ref: '#definitions/Group'
+
+  /groups/{group_id}/members:
+    get:
+      tags:
+        - group_members
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: group_id
+          description: group id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Return group members
+          schema:
+            type: array
+            items:
+              $ref: '#definitions/User'
+    post:
+      tags:
+        - group_members
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: group_id
+          description: group id
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+                format: int64
+                example: 1
+      responses:
+        201:
+          description: Create group member
+          schema:
+            $ref: '#definitions/User'
+
+  /groups/{group_id}/events:
+    get:
+      tags:
+        - group_events
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: group_id
+          description: group id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Return group events
+          schema:
+            type: array
+            items:
+              $ref: '#definitions/Event'
+    post:
+      tags:
+        - group_events
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: group_id
+          description: group id
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: 渋谷付近で麻雀したい 50打目
+              date:
+                type: string
+                format: date
+                example: '2018-01-10'
+      responses:
+        201:
+          description: Create event
+          schema:
+            $ref: '#definitions/Event'
+
+  /events/{id}:
+    get:
+      tags:
+        - events
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: event_id
+          description: event id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Return a single event
+          schema:
+            $ref: '#definitions/Event'
+
+  /events/{event_id}/members:
+    get:
+      tags:
+        - event_members
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: event_id
+          description: event id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Return event members
+          schema:
+            type: array
+            items:
+              $ref: '#definitions/User'
+    post:
+      tags:
+        - event_members
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: event_id
+          description: event id
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+                format: int64
+                example: 1
+      responses:
+        201:
+          description: Create event member
+          schema:
+            $ref: '#definitions/User'
+
+  /events/{event_id}/games:
+    get:
+      tags:
+        - event_games
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: event_id
+          description: event id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Return event games
+          schema:
+            type: array
+            items:
+              $ref: '#definitions/Game'
+
+    post:
+      tags:
+        - event_games
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: event_id
+          description: event id
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              scores:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                      format: int64
+                    point:
+                      type: integer
+                      format: int32
+                example:
+                  - { user_id: 1, point: 10 }
+                  - { user_id: 2, point: -10 }
+                  - { user_id: 3, point: 40 }
+                  - { user_id: 4, point: -40 }
+      responses:
+        201:
+          description: Create game
+          schema:
+            $ref: '#definitions/Game'
+
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      name:
+        type: string
+        example: hokaccha
+  Group:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      name:
+        type: string
+        example: tolymer
+
+  Event:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      group_id:
+        type: integer
+        format: int64
+        example: 1
+      title:
+        type: string
+        example: 渋谷付近で麻雀したい 50打目
+      date:
+        type: string
+        format: date
+        example: '2018-01-10'
+      created_at:
+        type: string
+        format: date-time
+        example: '2018-03-26T14:12:40.667Z'
+  Game:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      event_id:
+        type: integer
+        format: int64
+        example: 1
+      scores:
+        type: array
+        items:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              format: int64
+            point:
+              type: integer
+              format: int32
+        example:
+          - { user_id: 1, point: 10 }
+          - { user_id: 2, point: -10 }
+          - { user_id: 3, point: 40 }
+          - { user_id: 4, point: -40 }
