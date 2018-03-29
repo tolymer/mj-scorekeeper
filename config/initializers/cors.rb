@@ -12,7 +12,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     end
 
     if Rails.env.production?
-      origins 'https://tolymer.com'
+      # FIXME
+      origins '*'
     end
 
     resource '*',
