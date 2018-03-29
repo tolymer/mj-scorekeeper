@@ -1,0 +1,47 @@
+'/groups/{group_id}/members':
+  get:
+    tags:
+      - group_members
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: group_id
+        description: group id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Return group members
+        schema:
+          type: array
+          items:
+            $ref: '#definitions/User'
+  post:
+    tags:
+      - group_members
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: group_id
+        description: group id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              format: int64
+              example: 1
+    responses:
+      '201':
+        description: Create group member
+        schema:
+          $ref: '#definitions/User'

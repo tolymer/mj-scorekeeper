@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
-    name { "name_#{id}" }
+    sequence(:name) {|n| "user_#{n}" }
+    password_digest { 'xxx' }
   end
 end

@@ -1,0 +1,50 @@
+'/groups/{group_id}/events':
+  get:
+    tags:
+      - group_events
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: group_id
+        description: group id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Return group events
+        schema:
+          type: array
+          items:
+            $ref: '#definitions/Event'
+  post:
+    tags:
+      - group_events
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: group_id
+        description: group id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+              example: 渋谷付近で麻雀したい 50打目
+            date:
+              type: string
+              format: date
+              example: '2018-01-10'
+    responses:
+      '201':
+        description: Create event
+        schema:
+          $ref: '#definitions/Event'

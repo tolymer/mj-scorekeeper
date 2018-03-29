@@ -1,0 +1,22 @@
+Event:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+      example: 1
+    group_id:
+      type: integer
+      format: int64
+      example: 1
+    title:
+      type: string
+      example: 渋谷付近で麻雀したい 50打目
+    date:
+      type: string
+      format: date
+      example: '2018-01-10'
+    created_at:
+      type: string
+      format: date-time
+      example: '2018-03-26T14:12:40.667Z'

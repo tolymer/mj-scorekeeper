@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: mj-scorekeeper_development
+  database: tolymer_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mj-scorekeeper_test
+  database: tolymer_test
   username: postgres
   password:
   host: localhost
@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: mj-scorekeeper_production
-  username: mj-scorekeeper
-  password: <%= ENV['MJ-SCOREKEEPER_DATABASE_PASSWORD'] %>
+  database: tolymer_production
+  username: tolymer
+  password: <%= ENV['TOLYMER_DATABASE_PASSWORD'] %>

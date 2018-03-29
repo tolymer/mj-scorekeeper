@@ -1,0 +1,18 @@
+'/events/{event_id}':
+  get:
+    tags:
+      - events
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: event_id
+        description: event id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Return a single event
+        schema:
+          $ref: '#definitions/Event'
