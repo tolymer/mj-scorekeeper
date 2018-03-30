@@ -1,0 +1,11 @@
+'current_user':
+  get:
+    tags:
+      - users
+    security:
+      - Bearer: []
+    responses:
+      '200':
+        description: Returns a single user
+        schema:
+          $ref: '#definitions/User'
