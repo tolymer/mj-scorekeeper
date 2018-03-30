@@ -19,6 +19,10 @@ services:
     volumes:
       - .:/app
       - bundle:/app/vendor/bundle
+    environment:
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_HOST: db
     tty: true
     stdin_open: true
     command: ["script/start.sh"]
