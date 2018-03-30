@@ -5,17 +5,12 @@ describe 'users API' do
   subject(:body) { JSON.parse(response.body) }
 
   describe 'GET /users/:id' do
-    let(:current_user) { FactoryBot.create(:user) }
-    let(:headers) {
-      token = Knock::AuthToken.new(payload: { sub: current_user.id }).token
-      { Authorization: "Bearer #{token}" }
-    }
-
-    before { get "/users/#{current_user.id}", headers: headers }
+    let(:user) { FactoryBot.create(:user) }
+    before { get "/users/#{user.id}" }
 
     specify do
       expect(status).to be 200
-      expect(body).to eq({ 'id' => current_user.id, 'name' => current_user.name })
+      expect(body).to eq({ 'id' => user.id, 'name' => user.name })
     end
   end
 

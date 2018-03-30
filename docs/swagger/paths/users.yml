@@ -2,8 +2,6 @@
   get:
     tags:
       - users
-    security:
-      - Bearer: []
     parameters:
       - in: path
         name: user_id
