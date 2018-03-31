@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.create!(name: params[:name], members: [current_user])
+    group = Group.create!(name: params[:name], description: params[:description], members: [current_user])
     render json: group, status: 201
   end
 end

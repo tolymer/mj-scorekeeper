@@ -4,6 +4,6 @@ class Group < ApplicationRecord
   has_many :events
 
   def as_json(options)
-    super(only: [:id, :name])
+    super(only: [:id, :name, :description])
   end
 end
