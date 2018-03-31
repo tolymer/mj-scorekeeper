@@ -6,8 +6,7 @@ class GroupMembersController < ApplicationController
 
   def create
     group = Group.find(params[:group_id])
-    user = User.find(params[:user_id])
-    group.members << user
-    render json: user, status: 201
+    group.members << current_user
+    render json: { result: 'ok' }, status: 201
   end
 end
