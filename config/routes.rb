@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   post 'user_token' => 'user_token#create'
 
-  resources :current_user, only: %i(index)
+  resource :current_user, only: %i(show) do
+    get :groups
+  end
   resources :users, only: %i(show create)
   resources :groups, only: %i(show create update) do
     resources :members, only: %i(index create), controller: 'group_members'
