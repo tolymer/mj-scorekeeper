@@ -32,14 +32,17 @@ describe 'event members API' do
 
   describe 'POST /events/:event_id/members' do
     let(:event) { FactoryBot.create(:event) }
-    let(:user) { FactoryBot.create(:user) }
-    before { post "/events/#{event.id}/members", params: { user_id: user.id }, headers: headers }
+    let(:user1) { FactoryBot.create(:user) }
+    let(:user2) { FactoryBot.create(:user) }
+    before { post "/events/#{event.id}/members", params: { user_ids: [user1.id, user2.id] }, headers: headers }
 
     specify do
       expect(status).to be 201
-      expect(body).to eq({ 'id' => user.id, 'name' => user.name })
-      expect(event.members.size).to eq 1
-      expect(event.members.take).to eq user
+      expect(body).to contain_exactly(
+        { 'id' => user1.id, 'name' => user1.name },
+        { 'id' => user2.id, 'name' => user2.name },
+      )
+      expect(event.members.size).to eq 2
     end
   end
 end

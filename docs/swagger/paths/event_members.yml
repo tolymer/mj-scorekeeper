@@ -36,12 +36,14 @@
         schema:
           type: object
           properties:
-            user_id:
+            user_ids:
               type: integer
               format: int64
-              example: 1
+              example: [1, 2, 3]
     responses:
       '201':
-        description: Create event member
+        description: Create event members
         schema:
-          $ref: '#definitions/User'
+          type: array
+          items:
+            $ref: '#definitions/User'

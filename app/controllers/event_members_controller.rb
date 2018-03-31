@@ -6,8 +6,8 @@ class EventMembersController < ApplicationController
 
   def create
     event = Event.find(params[:event_id])
-    user = User.find(params[:user_id])
-    event.members << user
-    render json: user, status: 201
+    users = User.where(id: params[:user_ids])
+    event.members << users
+    render json: users, status: 201
   end
 end
