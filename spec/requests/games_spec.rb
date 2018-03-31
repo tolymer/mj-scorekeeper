@@ -84,7 +84,7 @@ describe 'events API' do
       expect(user1_score.rank).to eq 2
 
       user2_score = game.scores.find_by(user_id: user2.id)
-      expect(user2_score.point).to eq -10
+      expect(user2_score.point).to eq(-10)
       expect(user2_score.rank).to eq 3
 
       user3_score = game.scores.find_by(user_id: user3.id)
@@ -92,8 +92,52 @@ describe 'events API' do
       expect(user3_score.rank).to eq 1
 
       user4_score = game.scores.find_by(user_id: user4.id)
-      expect(user4_score.point).to eq -30
+      expect(user4_score.point).to eq(-30)
       expect(user4_score.rank).to eq 4
+    end
+  end
+
+  describe 'PATCH /games/:id' do
+    let(:game) { FactoryBot.create(:game) }
+    let(:user1) { FactoryBot.create(:user) }
+    let(:user2) { FactoryBot.create(:user) }
+    let(:user3) { FactoryBot.create(:user) }
+    let(:user4) { FactoryBot.create(:user) }
+
+    before do
+      game.scores.create!(user: user1, point: 10,  rank: 2)
+      game.scores.create!(user: user2, point: -10, rank: 3)
+      game.scores.create!(user: user3, point: -30, rank: 4)
+      game.scores.create!(user: user4, point: 30,  rank: 1)
+      params = {
+        scores: [
+          { user_id: user1.id, point: -100 },
+          { user_id: user2.id, point: 20 },
+          { user_id: user3.id, point: -20 },
+          { user_id: user4.id, point: 100 },
+        ]
+      }
+      patch "/games/#{game.id}", params: params, headers: headers
+    end
+
+    specify do
+      expect(status).to be 200
+
+      user1_score = game.scores.find_by(user_id: user1.id)
+      expect(user1_score.point).to eq(-100)
+      expect(user1_score.rank).to eq 4
+
+      user2_score = game.scores.find_by(user_id: user2.id)
+      expect(user2_score.point).to eq(20)
+      expect(user2_score.rank).to eq 2
+
+      user3_score = game.scores.find_by(user_id: user3.id)
+      expect(user3_score.point).to eq(-20)
+      expect(user3_score.rank).to eq 3
+
+      user4_score = game.scores.find_by(user_id: user4.id)
+      expect(user4_score.point).to eq 100
+      expect(user4_score.rank).to eq 1
     end
   end
 end

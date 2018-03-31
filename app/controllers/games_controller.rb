@@ -10,6 +10,15 @@ class GamesController < ApplicationController
     render json: game, status: 201
   end
 
+  def update
+    game = Game.find(params[:id])
+    game.transaction do
+      game.scores.destroy_all
+      game.scores << scores
+    end
+    render json: { 'result': 'ok' }, status: 200
+  end
+
   private
 
   def scores
