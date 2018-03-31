@@ -1,7 +1,7 @@
-'current_user':
+'/current_user':
   get:
     tags:
-      - users
+      - current_user
     security:
       - Bearer: []
     responses:
@@ -9,3 +9,17 @@
         description: Returns a single user
         schema:
           $ref: '#definitions/User'
+
+'/current_user/groups':
+  get:
+    tags:
+      - current_user
+    security:
+      - Bearer: []
+    responses:
+      '200':
+        description: Returns current_user's groups
+        schema:
+          type: array
+          items:
+            $ref: '#definitions/Group'

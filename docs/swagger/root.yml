@@ -9,6 +9,7 @@ securityDefinitions:
 tags:
   - name: user_token
   - name: users
+  - name: current_user
   - name: groups
   - name: group_members
   - name: group_events
