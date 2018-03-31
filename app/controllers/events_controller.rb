@@ -11,7 +11,19 @@ class EventsController < ApplicationController
 
   def create
     group = Group.find(params[:group_id])
-    event = group.events.create!(title: params[:title], description: params[:description], date: params[:date])
+    event = group.events.create!(event_params)
     render json: event, status: 201
+  end
+
+  def update
+    event = Event.find(params[:id])
+    event.update!(event_params)
+    render json: { result: 'ok' }
+  end
+
+  private
+
+  def event_params
+    params.permit(:title, :description, :date)
   end
 end

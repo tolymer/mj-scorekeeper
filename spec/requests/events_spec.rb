@@ -44,6 +44,17 @@ describe 'events API' do
     end
   end
 
+  describe 'PATCH /events/:id' do
+    let(:event) { FactoryBot.create(:event) }
+    before { patch "/events/#{event.id}", params: { title: 'foo' }, headers: headers }
+
+    specify do
+      expect(status).to be 200
+      expect(body).to eq({ 'result' => 'ok' })
+      expect(event.reload.title).to eq 'foo'
+    end
+  end
+
   describe 'POST /groups/:group_id/events' do
     let(:group) { FactoryBot.create(:group) }
     let(:params) { { title: 'foo', description: 'bar', date: '2018-10-10' } }

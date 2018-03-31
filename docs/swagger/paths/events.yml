@@ -16,3 +16,40 @@
         description: Return a single event
         schema:
           $ref: '#definitions/Event'
+  patch:
+    tags:
+      - events
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: event_id
+        description: event id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+              example: 渋谷付近で麻雀したい 50打目
+            description:
+              type: string
+              example: 渋谷のzooで10時からやるよ
+            date:
+              type: string
+              format: date
+              example: '2018-01-10'
+    responses:
+      '200':
+        description: Updated the event
+        schema:
+          type: object
+          properties:
+            result:
+              type: string
+              example: ok
