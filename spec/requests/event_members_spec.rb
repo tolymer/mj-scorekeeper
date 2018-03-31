@@ -38,10 +38,7 @@ describe 'event members API' do
 
     specify do
       expect(status).to be 201
-      expect(body).to contain_exactly(
-        { 'id' => user1.id, 'name' => user1.name },
-        { 'id' => user2.id, 'name' => user2.name },
-      )
+      expect(body).to eq({ 'result' => 'ok' })
       expect(event.members.size).to eq 2
     end
   end

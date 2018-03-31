@@ -8,6 +8,6 @@ class EventMembersController < ApplicationController
     event = Event.find(params[:event_id])
     users = User.where(id: params[:user_ids])
     event.members << users
-    render json: users, status: 201
+    render json: { result: 'ok' }, status: 201
   end
 end

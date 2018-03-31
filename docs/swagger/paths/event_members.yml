@@ -44,6 +44,8 @@
       '201':
         description: Created event members
         schema:
-          type: array
-          items:
-            $ref: '#definitions/User'
+          type: object
+          properties:
+            result:
+              type: string
+              example: ok
