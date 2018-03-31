@@ -19,6 +19,7 @@
           items:
             $ref: '#definitions/User'
   post:
+    description: Join to group with current user
     tags:
       - group_members
     security:
@@ -30,18 +31,12 @@
         required: true
         type: integer
         format: int64
-      - in: body
-        name: body
-        required: true
+    responses:
+      '201':
+        description: Created group member
         schema:
           type: object
           properties:
-            user_id:
-              type: integer
-              format: int64
-              example: 1
-    responses:
-      '201':
-        description: Create group member
-        schema:
-          $ref: '#definitions/User'
+            result:
+              type: string
+              example: ok

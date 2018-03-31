@@ -32,14 +32,13 @@ describe 'group members API' do
 
   describe 'POST /groups/:group_id/members' do
     let(:group) { FactoryBot.create(:group) }
-    let(:user) { FactoryBot.create(:user) }
-    before { post "/groups/#{group.id}/members", params: { user_id: user.id }, headers: headers }
+    before { post "/groups/#{group.id}/members", headers: headers }
 
     specify do
       expect(status).to be 201
-      expect(body).to eq({ 'id' => user.id, 'name' => user.name })
+      expect(body).to eq({ 'result' => 'ok' })
       expect(group.members.size).to eq 1
-      expect(group.members.take).to eq user
+      expect(group.members.take).to eq current_user
     end
   end
 end
