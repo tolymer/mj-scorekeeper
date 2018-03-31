@@ -7,6 +7,7 @@ gem 'pg'
 gem 'puma'
 gem 'knock'
 gem 'rack-cors'
+gem 'ridgepole', require: false
 
 group :development, :test do
   gem 'pry-byebug'
@@ -14,7 +15,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'ridgepole'
   gem 'listen'
 end
 
