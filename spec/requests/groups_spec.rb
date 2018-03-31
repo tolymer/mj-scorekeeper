@@ -30,4 +30,15 @@ describe 'groups API' do
       expect(group.members.take).to eq current_user
     end
   end
+
+  describe 'PATCH /groups/:id' do
+    let(:group) { FactoryBot.create(:group) }
+    before { patch "/groups/#{group.id}", params: { name: 'foo' }, headers: headers }
+
+    specify do
+      expect(status).to be 200
+      expect(body).to eq({ 'result' => 'ok' })
+      expect(group.reload.name).to eq 'foo'
+    end
+  end
 end

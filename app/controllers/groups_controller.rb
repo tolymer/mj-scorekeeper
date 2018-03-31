@@ -5,7 +5,19 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.create!(name: params[:name], description: params[:description], members: [current_user])
+    group = Group.create!(group_params.merge(members: [current_user]))
     render json: group, status: 201
+  end
+
+  def update
+    group = Group.find(params[:id])
+    group.update!(group_params)
+    render json: { result: 'ok' }
+  end
+
+  private
+
+  def group_params
+    params.permit(:name, :description)
   end
 end
