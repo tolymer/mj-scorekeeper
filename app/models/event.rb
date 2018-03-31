@@ -6,6 +6,6 @@ class Event < ApplicationRecord
   belongs_to :group
 
   def as_json(options)
-    super(only: [:id, :title, :date, :group_id, :created_at])
+    super(only: [:id, :title, :description, :date, :group_id, :created_at])
   end
 end

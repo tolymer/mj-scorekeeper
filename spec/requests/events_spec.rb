@@ -19,6 +19,7 @@ describe 'events API' do
       expect(body).to eq([{
         'id' => event.id,
         'title' => event.title,
+        'description' => event.description,
         'date' => event.date.as_json,
         'group_id' => event.group_id,
         'created_at' => event.created_at.as_json,
@@ -35,6 +36,7 @@ describe 'events API' do
       expect(body).to eq({
         'id' => event.id,
         'title' => event.title,
+        'description' => event.description,
         'date' => event.date.as_json,
         'group_id' => event.group_id,
         'created_at' => event.created_at.as_json,
@@ -44,7 +46,7 @@ describe 'events API' do
 
   describe 'POST /groups/:group_id/events' do
     let(:group) { FactoryBot.create(:group) }
-    let(:params) { { title: 'foo', date: '2018-10-10' } }
+    let(:params) { { title: 'foo', description: 'bar', date: '2018-10-10' } }
     before { post "/groups/#{group.id}/events", params: params, headers: headers }
 
     specify do
@@ -54,6 +56,7 @@ describe 'events API' do
       expect(body).to eq({
         'id' => event.id,
         'title' => event.title,
+        'description' => event.description,
         'date' => event.date.as_json,
         'group_id' => event.group_id,
         'created_at' => event.created_at.as_json,

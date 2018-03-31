@@ -8,3 +8,6 @@ Group:
     name:
       type: string
       example: tolymer
+    description:
+      type: string
+      example: 渋谷付近で麻雀したいグループ

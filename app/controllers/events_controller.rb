@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   def create
     group = Group.find(params[:group_id])
-    event = group.events.create!(title: params[:title], date: params[:date])
+    event = group.events.create!(title: params[:title], description: params[:description], date: params[:date])
     render json: event, status: 201
   end
 end
