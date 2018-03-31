@@ -16,6 +16,39 @@
         description: Return a single group
         schema:
           $ref: '#definitions/Group'
+  patch:
+    tags:
+      - groups
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: group_id
+        description: group id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: tolymer
+            description:
+              type: string
+              example: 渋谷付近で麻雀したいグループ
+    responses:
+      '200':
+        description: Updated the group
+        schema:
+          type: object
+          properties:
+            result:
+              type: string
+              example: ok
 
 '/groups':
   post:
