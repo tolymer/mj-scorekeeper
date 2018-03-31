@@ -55,6 +55,6 @@
                 - { user_id: 4, point: -40 }
     responses:
       '201':
-        description: Create game
+        description: Created a game
         schema:
           $ref: '#definitions/Game'

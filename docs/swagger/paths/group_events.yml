@@ -48,6 +48,6 @@
               example: '2018-01-10'
     responses:
       '201':
-        description: Create event
+        description: Created a event
         schema:
           $ref: '#definitions/Event'

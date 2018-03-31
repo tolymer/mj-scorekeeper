@@ -33,7 +33,7 @@
         format: int64
     responses:
       '201':
-        description: Created group member
+        description: Created a group member
         schema:
           type: object
           properties:

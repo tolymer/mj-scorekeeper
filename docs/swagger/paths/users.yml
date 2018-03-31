@@ -35,6 +35,6 @@
               example: xxx
     responses:
       '201':
-        description: Create user
+        description: Created a user
         schema:
           $ref: '#definitions/User'

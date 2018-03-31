@@ -38,6 +38,6 @@
               example: 渋谷付近で麻雀したいグループ
     responses:
       '201':
-        description: Create group
+        description: Created a group
         schema:
           $ref: '#definitions/Group'

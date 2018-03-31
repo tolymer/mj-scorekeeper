@@ -42,7 +42,7 @@
               example: [1, 2, 3]
     responses:
       '201':
-        description: Create event members
+        description: Created event members
         schema:
           type: array
           items:
