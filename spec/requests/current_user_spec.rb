@@ -32,7 +32,7 @@ describe 'current_user API' do
 
     specify do
       expect(status).to be 200
-      expect(body).to eq([{ 'id' => group1.id, 'name' => group1.name }])
+      expect(body).to eq([{ 'id' => group1.id, 'name' => group1.name, 'description' => 'group description' }])
     end
   end
 end
