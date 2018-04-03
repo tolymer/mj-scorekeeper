@@ -1,6 +1,6 @@
 # Docs
 
-https://tolymer.kibe.la/notes/tree/mj-scorekeeper
+https://tolymer.kibe.la/notes/tree/tolymer
 
 ## Required
 
