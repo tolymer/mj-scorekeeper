@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :events, only: %i(index show create update), shallow: true do
       resources :members, only: %i(index create), controller: 'event_members'
       resources :games, only: %i(index create update)
+      resources :tips, only: %i(index create)
     end
   end
 
