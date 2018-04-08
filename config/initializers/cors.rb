@@ -8,12 +8,12 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.development?
-      origins '*'
+      origins 'localhost:5000'
     end
 
     if Rails.env.production?
       # FIXME
-      origins '*'
+      origins 'app.tolymer.com'
     end
 
     resource '*',
