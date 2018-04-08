@@ -1,0 +1,76 @@
+'/events/{event_id}/tips':
+  get:
+    tags:
+      - event_tips
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: event_id
+        description: event id
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Return event tips
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: integer
+                format: int64
+              point:
+                type: integer
+                format: int32
+          example:
+            - { user_id: 1, point: 10 }
+            - { user_id: 2, point: -10 }
+            - { user_id: 3, point: 40 }
+            - { user_id: 4, point: -40 }
+
+  post:
+    tags:
+      - event_tips
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: event_id
+        description: event id
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            tip:
+              type: array
+              items:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    format: int64
+                  point:
+                    type: integer
+                    format: int32
+              example:
+                - { user_id: 1, point: 10 }
+                - { user_id: 2, point: -10 }
+                - { user_id: 3, point: 40 }
+                - { user_id: 4, point: -40 }
+    responses:
+      '200':
+        description: Save the event tips
+        schema:
+          type: object
+          properties:
+            result:
+              type: string
+              example: ok
