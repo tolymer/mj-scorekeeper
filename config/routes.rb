@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       resources :games, only: %i(index create update)
       resources :tips, only: %i(index create)
     end
+    member do
+      get :stats
+    end
   end
 
   resources :swagger, only: [:index]

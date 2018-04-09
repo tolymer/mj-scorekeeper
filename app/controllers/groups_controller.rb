@@ -15,6 +15,11 @@ class GroupsController < ApplicationController
     render json: { result: 'ok' }
   end
 
+  def stats
+    group = Group.find(params[:id])
+    render json: group.stats
+  end
+
   private
 
   def group_params
