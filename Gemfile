@@ -8,6 +8,7 @@ gem 'puma'
 gem 'knock'
 gem 'rack-cors'
 gem 'ridgepole', '0.7.2.beta', require: false
+gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'pry-byebug'
