@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'root#index'
   post 'user_token' => 'user_token#create'
 
   resource :current_user, only: %i(show) do
