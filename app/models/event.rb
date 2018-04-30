@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
-  has_many :event_members
+  has_many :event_members, dependent: :delete_all
   has_many :members, through: :event_members, source: :user
-  has_many :games
+  has_many :games, dependent: :delete_all
   has_many :ordered_games, -> { order(created_at: :desc) }, class_name: 'Game'
   has_many :tips
 
