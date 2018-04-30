@@ -19,6 +19,11 @@ class GamesController < ApplicationController
     render json: { 'result': 'ok' }, status: 200
   end
 
+  def destroy
+    Game.find(params[:id]).destroy
+    render json: { result: 'ok' }
+  end
+
   private
 
   def scores
