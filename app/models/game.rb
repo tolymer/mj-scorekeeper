@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  has_many :scores, class_name: 'GameScore'
+  has_many :scores, class_name: 'GameScore', dependent: :destroy
 
   belongs_to :event
 

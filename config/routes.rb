@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :members, only: %i(index create), controller: 'group_members'
     resources :events, only: %i(index show create update destroy), shallow: true do
       resources :members, only: %i(index create), controller: 'event_members'
-      resources :games, only: %i(index create update)
+      resources :games, only: %i(index create update destroy)
       resources :tips, only: %i(index create)
     end
     member do
