@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: %i(show create)
   resources :groups, only: %i(show create update) do
     resources :members, only: %i(index create), controller: 'group_members'
-    resources :events, only: %i(index show create update), shallow: true do
+    resources :events, only: %i(index show create update destroy), shallow: true do
       resources :members, only: %i(index create), controller: 'event_members'
       resources :games, only: %i(index create update)
       resources :tips, only: %i(index create)

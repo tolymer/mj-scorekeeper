@@ -55,6 +55,16 @@ describe 'events API' do
     end
   end
 
+  describe 'DELETE /event/:id' do
+    let(:event) { FactoryBot.create(:event) }
+    before { delete "/events/#{event.id}", headers: headers }
+
+    specify do
+      expect(status).to be 200
+      expect(body).to eq({ 'result' => 'ok' })
+    end
+  end
+
   describe 'POST /groups/:group_id/events' do
     let(:group) { FactoryBot.create(:group) }
     let(:params) { { title: 'foo', description: 'bar', date: '2018-10-10' } }
