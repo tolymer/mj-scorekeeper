@@ -140,4 +140,26 @@ describe 'events API' do
       expect(user4_score.rank).to eq 1
     end
   end
+
+  describe 'DELETE /games/:id' do
+    let(:game) { FactoryBot.create(:game) }
+    let(:user1) { FactoryBot.create(:user) }
+    let(:user2) { FactoryBot.create(:user) }
+    let(:user3) { FactoryBot.create(:user) }
+    let(:user4) { FactoryBot.create(:user) }
+
+    before do
+      game.scores.create!(user: user1, point: 10,  rank: 2)
+      game.scores.create!(user: user2, point: -10, rank: 3)
+      game.scores.create!(user: user3, point: -30, rank: 4)
+      game.scores.create!(user: user4, point: 30,  rank: 1)
+      delete "/games/#{game.id}", headers: headers
+    end
+
+    specify do
+      expect(status).to be 200
+      # expect(Game.where(game_id).size).to be 0
+      expect(game.scores.size).to be 0
+    end
+  end
 end
