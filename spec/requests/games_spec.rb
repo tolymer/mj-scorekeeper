@@ -158,7 +158,7 @@ describe 'events API' do
 
     specify do
       expect(status).to be 200
-      # expect(Game.where(game_id).size).to be 0
+      expect(Game.where(id: game.id).exists?).to be false
       expect(game.scores.size).to be 0
     end
   end
