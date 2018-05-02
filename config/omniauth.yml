@@ -1,12 +1,10 @@
 production: &production
   google:
-    client_id: <%= ENV.fetch('GOOGLE_OAUTH_CLIENT_ID') %>
-    secret: <%= ENV.fetch('GOOGLE_OAUTH_SECRET') %>
+    client_id: <%= ENV['GOOGLE_OAUTH_CLIENT_ID'] %>
+    secret: <%= ENV['GOOGLE_OAUTH_SECRET'] %>
 
 development: &development
   <<: *production
 
 test: &test
-  google:
-    client_id: ''
-    secret: ''
+  <<: *development
