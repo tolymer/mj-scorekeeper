@@ -7,9 +7,19 @@ class User < ApplicationRecord
   has_many :events, through: :event_members
   has_many :game_scores
 
-  def self.from_token_request(request)
-    name = request.params.dig('auth', 'name')
-    find_by(name: name)
+  def self.from_omniauth(auth)
+    user = find_by(uid: auth.uid)
+
+    unless user
+      User.create(
+        name: auth.info.name,
+        provider: auth.provider,
+        uid: auth.uid
+        token: auth.credentials.token,
+        confirmed_at: Time.zone.now
+      )
+
+    user
   end
 
   def as_json(options)
