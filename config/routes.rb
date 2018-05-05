@@ -1,10 +1,12 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw :destroy
   root to: 'root#index'
   post 'user_token' => 'user_token#create'
+  get 'auth/:provider/callback' => 'sessions#create'
 
   resource :current_user, only: %i(show) do
     get :groups
   end
+  resources :sessions, only: [:create, :destroy]
   resources :users, only: %i(show create)
   resources :groups, only: %i(show create update) do
     resources :members, only: %i(index create), controller: 'group_members'
