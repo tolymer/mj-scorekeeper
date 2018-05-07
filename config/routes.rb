@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'root#index'
-  post 'user_token' => 'user_token#create'
-  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/:provider/callback' => 'user_token#create'
 
   resource :current_user, only: %i(show) do
     get :groups
