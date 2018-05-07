@@ -1,4 +1,4 @@
-Rails.application.routes.draw :destroy
+Rails.application.routes.draw do
   root to: 'root#index'
   post 'user_token' => 'user_token#create'
   get 'auth/:provider/callback' => 'sessions#create'
