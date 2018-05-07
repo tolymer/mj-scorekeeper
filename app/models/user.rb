@@ -14,7 +14,7 @@ class User < ApplicationRecord
       User.create(
         name: auth.info.name,
         provider: auth.provider,
-        uid: auth.uid
+        uid: auth.uid,
         token: auth.credentials.token,
         confirmed_at: Time.zone.now
       )
