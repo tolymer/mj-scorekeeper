@@ -18,6 +18,7 @@ class User < ApplicationRecord
         token: auth.credentials.token,
         confirmed_at: Time.zone.now
       )
+    end
 
     user
   end
