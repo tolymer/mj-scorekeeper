@@ -4,4 +4,4 @@ create_table 'group_members', force: :cascade do |t|
   t.datetime 'created_at', null: false
 end
 
-add_index 'group_members', ['user_id', 'group_id'], name: 'idx_user_id_group_id', unique: true, using: :btree
+add_index 'group_members', ['user_id', 'group_id'], unique: true, using: :btree

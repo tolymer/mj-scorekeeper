@@ -6,4 +6,4 @@ create_table 'events', force: :cascade do |t|
   t.datetime 'created_at',  null: false
 end
 
-add_index 'events', 'group_id', name: 'idx_group_id', using: :btree
+add_index 'events', 'group_id', using: :btree

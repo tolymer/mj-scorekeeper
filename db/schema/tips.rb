@@ -4,4 +4,4 @@ create_table 'tips', force: :cascade do |t|
   t.integer  'point',    null: false
 end
 
-add_index 'tips', ['event_id', 'user_id'], name: 'idx_event_id_user_id', unique: true, using: :btree
+add_index 'tips', ['event_id', 'user_id'], unique: true, using: :btree
