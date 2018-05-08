@@ -1,0 +1,10 @@
+production: &production
+  google:
+    client_id: <%= ENV['GOOGLE_OAUTH_CLIENT_ID'] %>
+    secret: <%= ENV['GOOGLE_OAUTH_SECRET'] %>
+
+development: &development
+  <<: *production
+
+test: &test
+  <<: *development

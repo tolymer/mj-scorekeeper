@@ -13,14 +13,4 @@ describe 'users API' do
       expect(body).to eq({ 'id' => user.id, 'name' => user.name })
     end
   end
-
-  describe 'POST /users' do
-    before { post "/users", params: { name: 'foo', password: 'bar' }, headers: headers  }
-
-    specify do
-      user = User.take
-      expect(status).to be 201
-      expect(body).to eq({ 'id' => user.id, 'name' => user.name })
-    end
-  end
 end
