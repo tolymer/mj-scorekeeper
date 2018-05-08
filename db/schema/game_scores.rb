@@ -5,4 +5,4 @@ create_table 'game_scores', force: :cascade do |t|
   t.integer  'rank',     null: false
 end
 
-add_index 'game_scores', ['game_id', 'user_id'], name: 'idx_game_id_user_id', unique: true, using: :btree
+add_index 'game_scores', ['game_id', 'user_id'], unique: true, using: :btree

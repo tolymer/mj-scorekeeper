@@ -4,4 +4,4 @@ create_table 'users', force: :cascade do |t|
   t.datetime 'created_at',      null: false
 end
 
-add_index 'users', 'name', name: 'idx_name', unique: true, using: :btree
+add_index 'users', 'name', unique: true, using: :btree
