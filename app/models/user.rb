@@ -4,17 +4,17 @@ class User < ApplicationRecord
   has_many :groups, through: :group_members
   has_many :events, through: :event_members
   has_many :game_scores
-  has_many :authentications
+  has_many :auth_providers
 
   def self.find_or_create_by_auth_hash(auth_hash)
-    uid, provider = auth_hash.values_at(:uid, :provider)
-    auth = Authentication.find_by(uid: uid, provider: provider)
-    return auth.user if auth
+    uid, provider_name = auth_hash.values_at(:uid, :provider)
+    auth_provider = AuthProvider.find_by(name: provider_name, uid: uid)
+    return auth_provider.user if auth_provider
 
     name = auth_hash[:info][:nickname] || auth_hash[:info][:name]
     transaction do
       user = User.create!(name: name)
-      user.authentications.create!(uid: uid, provider: provider)
+      user.auth_providers.create!(name: provider_name, uid: uid)
       user
     end
   end
