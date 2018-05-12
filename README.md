@@ -2,6 +2,10 @@
 
 https://tolymer.kibe.la/notes/tree/tolymer
 
+## .env
+
+https://tolymer.kibe.la/notes/tolymer/9
+
 ## Required
 
 - [Docker](https://docs.docker.com/install/)
