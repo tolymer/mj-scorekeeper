@@ -12,6 +12,7 @@ gem 'bootsnap', require: false
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
@@ -23,6 +24,5 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_bot_rails'
   gem 'rspec_junit_formatter'
 end
