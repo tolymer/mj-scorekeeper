@@ -7,4 +7,4 @@ bundle install -j4 --quiet --without=production --path vendor/bundle
 bin/rake db:create
 bin/rake ridgepole:apply
 rm -f tmp/pids/server.pid
-bin/rails server -b '0.0.0.0'
+exec bin/rails server -b '0.0.0.0'
