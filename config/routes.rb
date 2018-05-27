@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   resources :guest_events, only: %i(show create update), param: :token, shallow: true do
     resources :guest_members, only: %i(index create update)
-    resources :guest_games, only: %i(index create update)
-    resources :guest_tips, only: %i(index create update)
+    resources :guest_games, only: %i(index create update destroy)
+    resources :guest_tips, only: %i(index create update destroy)
   end
 
   resources :swagger, only: [:index]

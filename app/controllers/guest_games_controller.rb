@@ -6,16 +6,14 @@ class GuestGamesController < GuestBaseController
 
   def create
     event = find_event
-    game = event.games.create!(scores: scores)
+    game = event.games.create!
+    game.update!(scores: scores)
     render json: game, status: 201
   end
 
   def update
     game = GuestGame.find(params[:id])
-    game.transaction do
-      game.scores.destroy_all
-      game.scores << scores
-    end
+    game.scores = scores
     render json: { 'result': 'ok' }, status: 200
   end
 
@@ -27,8 +25,8 @@ class GuestGamesController < GuestBaseController
   private
 
   def scores
-    params['scores'].each do |score|
-      GameScore.new(guest_member_id: score['member_id'], point: score['point'].to_i)
+    params['scores'].map do |score|
+      GuestGameScore.new(member_id: score['member_id'], point: score['point'].to_i)
     end
   end
 end

@@ -1,5 +1,8 @@
 class GuestTip < ApplicationRecord
+  belongs_to :event, class_name: 'GuestEvent'
+  belongs_to :member, class_name: 'GuestMember'
+
   def as_json(options)
-    super(only: [:guest_member_id, :point])
+    super(only: [:member_id, :point])
   end
 end

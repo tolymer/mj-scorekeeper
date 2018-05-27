@@ -1,12 +1,11 @@
 class GuestGame < ApplicationRecord
-  has_many :scores, class_name: 'GuestGameScore', dependent: :destroy
-
-  belongs_to :event
+  belongs_to :event, class_name: 'GuestEvent'
+  has_many :scores, class_name: 'GuestGameScore', foreign_key: :game_id, dependent: :destroy
 
   def as_json(options)
     super({
       only: [:id, :event_id],
-      include: { scores: { only: [:guest_member_id, :point] } }
+      include: { scores: { only: [:member_id, :point] } }
     })
   end
 end
