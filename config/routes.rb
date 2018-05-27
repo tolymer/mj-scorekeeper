@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resource :current_user, only: %i(show) do
     get :groups
   end
-  resources :sessions, only: [:create, :destroy]
   resources :users, only: %i(show update)
   resources :groups, only: %i(show create update) do
     resources :members, only: %i(index create), controller: 'group_members'
