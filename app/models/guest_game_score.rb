@@ -1,0 +1,2 @@
+class GuestGameScore < ApplicationRecord
+end
