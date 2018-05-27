@@ -1,4 +1,4 @@
-create_table 'group_events', force: :cascade do |t|
+create_table 'guest_events', force: :cascade do |t|
   t.string   'token',       null: false
   t.string   'title',       null: false
   t.text     'description', null: false, default: ''
@@ -6,4 +6,4 @@ create_table 'group_events', force: :cascade do |t|
   t.datetime 'created_at',  null: false
 end
 
-add_index 'group_events', 'token', unique: true, using: :btree
+add_index 'guest_events', 'token', unique: true, using: :btree
