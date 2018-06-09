@@ -20,7 +20,7 @@ describe GameScore do
     end
   end
 
-  describe '#score' do
+  describe '#point' do
     it 'should be integer value' do
       [-10, 0, 42].each {|p|
         game_score = FactoryBot.build(:game_score, { point: p })
