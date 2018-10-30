@@ -10,6 +10,8 @@ gem 'rack-cors'
 gem 'ridgepole', '0.7.2.beta', require: false
 gem 'bootsnap', require: false
 gem 'omniauth-google-oauth2'
+gem 'grpc'
+gem 'grpc-tools'
 
 group :development, :test do
   gem 'factory_bot_rails'
