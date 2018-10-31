@@ -13,7 +13,7 @@ class ClearConnectionInterceptor < GRPC::Interceptor
 end
 
 class GrpcServer
-  PORT = '127.0.0.1:8080'
+  PORT = '0.0.0.0:5000'
 
   def initialize
     @server = GRPC::RpcServer.new(interceptors: [ClearConnectionInterceptor.new])
