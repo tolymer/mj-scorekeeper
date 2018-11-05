@@ -12,4 +12,15 @@ class GuestEvent < ApplicationRecord
   def as_json(options)
     super(only: [:token, :title, :description, :date, :created_at])
   end
+
+  def to_proto
+    Tolymer::Event.new(
+      token: token,
+      title: title,
+      description: description,
+      date: date.to_s,
+      members: members.map(&:to_proto),
+      games: games.map(&:to_proto),
+    )
+  end
 end
